@@ -1,0 +1,106 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    transition: ease-in-out 1s;
+    background-color: hsl(139, 47%, 65%);
+
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    
+    font-family: Arial, Helvetica, sans-serif;
+
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+main {
+    transition: ease-in-out 1s;
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: flex-start; 
+
+    gap: 10px;
+    padding: 20px;
+
+    box-sizing: border-box;
+    width: 90vw;
+    min-height: calc(100vh - 60px);
+
+    background-color: hsl(135, 48%, 41%);
+    border: 1px solid white;
+    border-radius: 15px;
+    outline: 4px solid hsl(131, 100%, 52%);
+    margin: 30px auto;
+}
+
+.mathIcon {
+    width: 60px;
+    margin-bottom: 50px;
+}
+
+.cards{
+    border: 1px solid white;
+    border-radius: 15px;
+    outline: 4px solid hsl(96, 51%, 52%);
+    background-color: hsl(96, 51%, 52%);
+    width: 120px;
+    height: 200px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    box-sizing: border-box;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out, background-color 0.6s ease-in-out, outline-color 0.6s ease-in-out;
+}
+
+.cards:hover {
+    cursor: pointer;
+
+    background-color: hsl(125, 82%, 21%);
+    outline: 4px solid hsl(125, 82%, 21%);
+
+    transform: scale(1.1, 1.1);
+
+    transition: all 0.6s ease-in-out;
+}
+
+.activate {
+    pointer-events: none;
+    transition: all 0.8s ease-in-out;
+
+    transform: rotateY(180deg);
+    
+    background-color: rgb(50, 47, 59);
+    outline: 4px solid rgb(50, 47, 59);
+}
+
+.activate .content {
+    transform: rotateY(180deg);
+
+    transform-style: preserve-3d;
+}
+
+.right {
+    pointer-events: none;
+
+    transition: all 0.8s;
+    background-color: rgb(68, 255, 243);
+    outline: 4px solid rgb(68, 255, 243);
+}
+.content {
+    margin-top: 70%;
+    color: white;
+}
