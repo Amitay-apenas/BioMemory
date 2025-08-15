@@ -1,58 +1,129 @@
-const cards = document.querySelectorAll('.card');
+const grid = document.querySelector('.grid');
+const acertosSpan = document.querySelector('.acertos');
+let acertos = 0;
 
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
+// Dados das cartas (Pai e Filho)
+const cardData = [
+    { id: 1, type: 'pai', src: './imagem/sementes/A-Vv Vv.jpg' },
+    { id: 1, type: 'filho', src: './imagem/sementes/A-Vv Vv.jpg' },
+    { id: 2, type: 'pai', src: './imagem/sementes/AV-Vvvv.jpg' },
+    { id: 2, type: 'filho', src: './imagem/sementes/AV-Vvvv.jpg' },
+    { id: 3, type: 'pai', src: './imagem/sementes/A-VVVv.jpg' },
+    { id: 3, type: 'filho', src: './imagem/sementes/A-VVVv.jpg' },
+    { id: 4, type: 'pai', src: './imagem/sementes/A-VV vv.jpg' },
+    { id: 4, type: 'filho', src: './imagem/sementes/A-VV vv.jpg' },
+    // Adicione mais pares de cartas aqui
+];
 
-function flipCard() {
-  if (lockBoard) return;
-  if (this === firstCard) return;
+let firstCard = '';
+let secondCard = '';
+let flippedCards = 0;
 
-  this.classList.add('flip');
+// Função para verificar se as duas cartas viradas formam um par
+const checkMatch = () => {
+    const firstCardDataSrc = firstCard.getAttribute('data-src');
+    const secondCardDataSrc = secondCard.getAttribute('data-src');
 
-  if (!hasFlippedCard) {
-    hasFlippedCard = true;
-    firstCard = this;
-    return;
-  }
+    // Encontra os objetos correspondentes aos src das cartas
+    const firstCardData = cardData.find(card => card.src === firstCardDataSrc);
+    const secondCardData = cardData.find(card => card.src === secondCardDataSrc);
 
-  secondCard = this;
-  checkForMatch();
+    if (firstCardData && secondCardData) {
+        // Verifica se os IDs são iguais e os tipos são diferentes (Pai vs Filho)
+        if (firstCardData.id === secondCardData.id && firstCardData.type !== secondCardData.type) {
+            disableCards();
+            acertos++;
+            acertosSpan.textContent = acertos;
+        } else {
+            unflipCards();
+        }
+    } else {
+        unflipCards();
+    }
 }
 
-function checkForMatch() {
-  const isMatch = firstCard.dataset.card === secondCard.dataset.card;
-  isMatch ? disableCards() : unflipCards();
-}
-
-function disableCards() {
-  firstCard.removeEventListener('click', flipCard);
-  secondCard.removeEventListener('click', flipCard);
-
-  resetBoard();
-}
-
-function unflipCards() {
-  lockBoard = true;
-
-  setTimeout(() => {
-    firstCard.classList.remove('flip');
-    secondCard.classList.remove('flip');
+// Desabilita as cartas que formam um par
+const disableCards = () => {
+    firstCard.removeEventListener('click', flipCard);
+    secondCard.removeEventListener('click', flipCard);
+    
+    // Adiciona uma classe para indicar que as cartas foram pareadas
+    firstCard.classList.add('matched');
+    secondCard.classList.add('matched');
 
     resetBoard();
-  }, 1500);
 }
 
-function resetBoard() {
-  [hasFlippedCard, lockBoard] = [false, false];
-  [firstCard, secondCard] = [null, null];
+// Vira as cartas de volta se não formam um par
+const unflipCards = () => {
+    setTimeout(() => {
+        firstCard.classList.remove('flip');
+        secondCard.classList.remove('flip');
+        resetBoard();
+    }, 1000);
 }
 
-(function shuffle() {
-  cards.forEach(card => {
-    let randomPos = Math.floor(Math.random() * 16);
-    card.style.order = randomPos;
-  });
-})();
+// Reseta o estado do jogo para a próxima jogada
+const resetBoard = () => {
+    firstCard = null;
+    secondCard = null;
+}
 
-cards.forEach(card => card.addEventListener('click', flipCard));
+// Função para virar uma carta ao ser clicada
+const flipCard = ({ target }) => {
+    if (firstCard && secondCard) {
+        return; // Impede que mais de duas cartas sejam viradas
+    }
+
+    const cardElement = target.closest('.card');
+    if (!cardElement || cardElement.classList.contains('flip') || cardElement.classList.contains('matched')) {
+        return;
+    }
+
+    cardElement.classList.add('flip');
+
+    if (!firstCard) {
+        firstCard = cardElement;
+    } else {
+        secondCard = cardElement;
+        checkMatch();
+    }
+}
+
+// Função para criar um elemento de carta
+const createCardElement = (card) => {
+    const divCard = document.createElement('div');
+    const divFront = document.createElement('div');
+    const divBack = document.createElement('div');
+    
+    divCard.classList.add('card');
+    divFront.classList.add('front');
+    divBack.classList.add('back');
+
+    divFront.style.backgroundImage = `url('${card.src}')`;
+    
+    divCard.setAttribute('data-src', card.src);
+
+    divCard.appendChild(divFront);
+    divCard.appendChild(divBack);
+    
+    divCard.addEventListener('click', flipCard);
+    
+    return divCard;
+}
+
+// Função principal para carregar o jogo
+const loadGame = () => {
+    const allCards = [...cardData, ...cardData]; // Duplica o array para criar os pares
+    
+    // Embaralha as cartas
+    const shuffledCards = allCards.sort(() => Math.random() - 0.5);
+
+    // Cria os elementos HTML e os adiciona à grade
+    shuffledCards.forEach(item => {
+        const card = createCardElement(item);
+        grid.appendChild(card);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadGame);
