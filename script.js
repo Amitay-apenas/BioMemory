@@ -4,14 +4,14 @@ let acertos = 0;
 
 // Dados das cartas (Pai e Filho)
 const cardData = [
-  { id: 1, type: "pai", src: "./imagem/sementes/A-Vv Vv.jpg" },
-  { id: 1, type: "filho", src: "./imagem/sementes/A-Vv Vv.jpg" },
-  { id: 2, type: "pai", src: "./imagem/sementes/AV-Vvvv.jpg" },
-  { id: 2, type: "filho", src: "./imagem/sementes/AV-Vvvv.jpg" },
-  { id: 3, type: "pai", src: "./imagem/sementes/A-VVVv.jpg" },
-  { id: 3, type: "filho", src: "./imagem/sementes/A-VVVv.jpg" },
-  { id: 4, type: "pai", src: "./imagem/sementes/A-VV vv.jpg" },
-  { id: 4, type: "filho", src: "./imagem/sementes/A-VV vv.jpg" },
+  { id: 1, type: "pai", src: "./imagem/sementes/pais/A-Vv Vv.jpg" },
+  { id: 1, type: "filho", src: "imagem/sementes/filhos/f-Vv.jpg" },
+  { id: 2, type: "pai", src: "./imagem/sementes/pais/AV-Vvvv.jpg" },
+  { id: 2, type: "filho", src: "./imagem/sementes/filhos/f-Vv.jpg" },
+  { id: 3, type: "pai", src: "./imagem/sementes/pais/A-VVVv.jpg" },
+  { id: 3, type: "filho", src: "./imagem/sementes/filhos/f- VVv.jpg" },
+  { id: 4, type: "pai", src: "./imagem/sementes/pais/A-VV vv.jpg" },
+  { id: 4, type: "filho", src: "./imagem/sementes/filhos/f-VV.jpg" },
   // Adicione mais pares de cartas aqui
 ];
 
@@ -52,7 +52,11 @@ const disableCards = () => {
   firstCard.removeEventListener("click", flipCard);
   secondCard.removeEventListener("click", flipCard);
 
-  // Adiciona uma classe para indicar que as cartas foram pareadas
+  // Adiciona a classe que muda a cor de fundo
+  firstCard.classList.add("matched-card");
+  secondCard.classList.add("matched-card");
+
+  // Adiciona uma classe para indicar que as cartas foram pareadas (útil para lógica futura)
   firstCard.classList.add("matched");
   secondCard.classList.add("matched");
 
