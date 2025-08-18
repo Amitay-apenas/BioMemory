@@ -1,96 +1,129 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-::-webkit-scrollbar{
-    background-color: green;
-    width: 10px;
+::-webkit-scrollbar {
+  background-color: green;
+  width: 10px;
 }
 
-::-webkit-scrollbar-thumb{
-    background-color: lightgreen;
+::-webkit-scrollbar-thumb {
+  background-color: lightgreen;
 }
 
 body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #33dc47;
-    font-family: Arial, sans-serif;
-
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #33dc47;
+  font-family: Arial, sans-serif;
 }
 
 h1 {
-    color: #ffd369;
-    margin: 20px;
-    font-size: 3rem;
+  color: #ffd369;
+  margin: 20px;
+  font-size: 3rem;
 }
 
 .game-board {
-    align-items: center;
-    width: 100%;
-    height: 600px;
+  align-items: center;
+  width: 100%;
+  height: 600px;
 
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    gap: 15px;
-    perspective: 1000px;
-    padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 15px;
+  perspective: 1000px;
+  padding: 15px;
 }
 
 .card {
-    position: relative;
-    transform: translateY(0);
-    transform-style: preserve-3d;
-    transition: transform 0.5s ease-in-out;
-    cursor: pointer;
+  position: relative;
+  transform: translateY(0);
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+  cursor: pointer;
 
-    width: 250px;
-    height: 250px;
+  width: 250px;
+  height: 250px;
 
-    background-color: rgb(50, 158, 0);
-    border-radius: 15px;
-
+  background-color: rgb(50, 158, 0);
+  border-radius: 15px;
 }
 
 .card.flip {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
-.card-back, .card-front {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border-radius: 10px;
-    backface-visibility: hidden;
-    pointer-events: none;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+.card-back,
+.card-front {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  pointer-events: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card-front {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 
-    background-size: 90%;
-    background-repeat: no-repeat;
+  background-size: 90%;
+  background-repeat: no-repeat;
 
-    background-position: 20px;
+  background-position: 20px;
 }
 
-.info-placar{
-    background-color: rgba(255, 255, 255, 0.316);
+.info-placar {
+  background-color: rgba(255, 255, 255, 0.316);
 
-    border-radius: 15px;
-    padding: 10px;
+  border-radius: 15px;
+  padding: 10px;
 
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .matched-card {
   background-color: #6a1b9a;
 
   transition: all 1s;
+}
+
+.leiMendel {
+  max-width: 500px;
+  margin: 10px;
+}
+
+.guide-conteiner {
+  display: flex;
+  flex-flow: row;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+th {
+  background-color: #93ffa9;
+  font-weight: bold;
+}
+tr:nth-child(even) {
+  background-color: #93ffa9;
+}
+caption {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
 }

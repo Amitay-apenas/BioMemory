@@ -3,14 +3,14 @@ const acertosSpan = document.querySelector(".acertos");
 let acertos = 0;
 
 const cardData = [
-  { id: 1, type: "pai", src: "./imagem/sementes/pais/P-Vv2.jpg" },
-  { id: 1, type: "filho", src: "imagem/sementes/filhos/f-Vv.jpg" },
-  { id: 2, type: "pai", src: "./imagem/sementes/pais/P-Vvvv(verde2).jpg" },
-  { id: 2, type: "filho", src: "./imagem/sementes/filhos/f-Vv.jpg" },
-  { id: 3, type: "pai", src: "./imagem/sementes/pais/P-VVVv.jpg" },
-  { id: 3, type: "filho", src: "./imagem/sementes/filhos/f- VVv.jpg" },
-  { id: 4, type: "pai", src: "./imagem/sementes/pais/P-VVvv(verde).jpg" },
-  { id: 4, type: "filho", src: "./imagem/sementes/filhos/f-VV.jpg" },
+  { id: 1, type: "pai", src: "./imagem/sementes/pais/P1.jpg" },
+  { id: 1, type: "filho", src: "imagem/sementes/filhos/F1.jpg" },
+  { id: 2, type: "pai", src: "./imagem/sementes/pais/P2.jpg" },
+  { id: 2, type: "filho", src: "./imagem/sementes/filhos/F2.jpg" },
+  { id: 3, type: "pai", src: "./imagem/sementes/pais/P3" },
+  { id: 3, type: "filho", src: "./imagem/sementes/filhos/F3" },
+  { id: 4, type: "pai", src: "./imagem/sementes/pais/P4.jpg" },
+  { id: 4, type: "filho", src: "./imagem/sementes/filhos/F4.jpg" },
   // Adicione mais pares de cartas aqui
 ];
 
