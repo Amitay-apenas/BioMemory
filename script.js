@@ -2,15 +2,14 @@ const grid = document.querySelector(".game-board");
 const acertosSpan = document.querySelector(".acertos");
 let acertos = 0;
 
-// Dados das cartas (Pai e Filho)
 const cardData = [
-  { id: 1, type: "pai", src: "./imagem/sementes/pais/A-Vv Vv.jpg" },
+  { id: 1, type: "pai", src: "./imagem/sementes/pais/P-Vv2.jpg" },
   { id: 1, type: "filho", src: "imagem/sementes/filhos/f-Vv.jpg" },
-  { id: 2, type: "pai", src: "./imagem/sementes/pais/AV-Vvvv.jpg" },
+  { id: 2, type: "pai", src: "./imagem/sementes/pais/P-Vvvv(verde2).jpg" },
   { id: 2, type: "filho", src: "./imagem/sementes/filhos/f-Vv.jpg" },
-  { id: 3, type: "pai", src: "./imagem/sementes/pais/A-VVVv.jpg" },
+  { id: 3, type: "pai", src: "./imagem/sementes/pais/P-VVVv.jpg" },
   { id: 3, type: "filho", src: "./imagem/sementes/filhos/f- VVv.jpg" },
-  { id: 4, type: "pai", src: "./imagem/sementes/pais/A-VV vv.jpg" },
+  { id: 4, type: "pai", src: "./imagem/sementes/pais/P-VVvv(verde).jpg" },
   { id: 4, type: "filho", src: "./imagem/sementes/filhos/f-VV.jpg" },
   // Adicione mais pares de cartas aqui
 ];
@@ -51,8 +50,6 @@ const checkMatch = () => {
 const disableCards = () => {
   firstCard.removeEventListener("click", flipCard);
   secondCard.removeEventListener("click", flipCard);
-
-  // Adiciona a classe que muda a cor de fundo
   firstCard.classList.add("matched-card");
   secondCard.classList.add("matched-card");
 
@@ -110,7 +107,7 @@ const createCardElement = (card) => {
   const divBack = document.createElement("div");
 
   divCard.classList.add("card");
-  divFront.classList.add("card-front"); // Mudado de 'front' para 'card-front'
+  divFront.classList.add("card-front");
   divBack.classList.add("card-back");
 
   divFront.style.backgroundImage = `url('${card.src}')`;
@@ -125,18 +122,16 @@ const createCardElement = (card) => {
   return divCard;
 };
 
-// Função principal para carregar o jogo
 const loadGame = () => {
-  const allCards = [...cardData, ...cardData]; // Duplica o array para criar os pares
+  const limitedCardData = cardData.slice(0, 4);
+  const allCards = [...limitedCardData, ...limitedCardData];
 
-  // Embaralha as cartas
-  const shuffledCards = allCards.sort(() => Math.random() - 0.5);
+  const shuffledCards = allCards.sort(() => Math.random() - 0.5);
 
-  // Cria os elementos HTML e os adiciona à grade
-  shuffledCards.forEach((item) => {
-    const card = createCardElement(item);
-    grid.appendChild(card);
-  });
+  shuffledCards.forEach((item) => {
+    const card = createCardElement(item);
+    grid.appendChild(card);
+  });
 };
 
 document.addEventListener("DOMContentLoaded", loadGame);
