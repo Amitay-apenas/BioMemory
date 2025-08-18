@@ -123,8 +123,8 @@ const createCardElement = (card) => {
 };
 
 const loadGame = () => {
-  // const limitedCardData = cardData.slice(0, 4);  <-- Linha removida
-  const allCards = [...cardData, ...cardData];
+  // Apenas use o array de dados de carta, que já contém 8 cartas (4 pares)
+  const allCards = cardData;
 
   const shuffledCards = allCards.sort(() => Math.random() - 0.5);
 
