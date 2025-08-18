@@ -123,15 +123,15 @@ const createCardElement = (card) => {
 };
 
 const loadGame = () => {
-  const limitedCardData = cardData.slice(0, 4);
-  const allCards = [...limitedCardData, ...limitedCardData];
+  // const limitedCardData = cardData.slice(0, 4);  <-- Linha removida
+  const allCards = [...cardData, ...cardData];
 
-  const shuffledCards = allCards.sort(() => Math.random() - 0.5);
+  const shuffledCards = allCards.sort(() => Math.random() - 0.5);
 
-  shuffledCards.forEach((item) => {
-    const card = createCardElement(item);
-    grid.appendChild(card);
-  });
+  shuffledCards.forEach((item) => {
+    const card = createCardElement(item);
+    grid.appendChild(card);
+  });
 };
 
 document.addEventListener("DOMContentLoaded", loadGame);
